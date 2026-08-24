@@ -47,3 +47,12 @@ Use `TODO`, `CURRENT`, `BLOCKED`, and `DONE` as explicit project states. `DONE` 
 ## License
 
 Apache-2.0. See `LICENSE`.
+
+
+## Install and run
+
+```sh
+chmod +x install.sh run.sh
+./install.sh
+./run.sh --help
+```
