@@ -1,0 +1,16 @@
+{
+  "title": "Project work state",
+  "type": "object",
+  "required": ["schema_version", "project", "status", "objective", "updated_utc", "next_command", "evidence", "blockers"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {"const": 1},
+    "project": {"type": "string", "minLength": 1},
+    "status": {"enum": ["todo", "current", "blocked", "done"]},
+    "objective": {"type": "string", "minLength": 1},
+    "updated_utc": {"type": "string", "format": "date-time"},
+    "next_command": {"type": "string"},
+    "evidence": {"type": "array", "items": {"type": "string"}},
+    "blockers": {"type": "array", "items": {"type": "string"}}
+  }
+}
