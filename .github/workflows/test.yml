@@ -1,0 +1,26 @@
+name: test
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: python -m unittest discover -s tests -v
+      - run: bash -n modules/bash/*.sh tests/*.sh
+      - run: bash tests/test_shell_modules.sh
+      - run: bash tests/test_privacy.sh
+      - run: php -l modules/php/sqlite_bootstrap.php
+      - run: php -l modules/php/json_response.php

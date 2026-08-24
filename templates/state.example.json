@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "project": "PROJECT",
+  "status": "current",
+  "objective": "Implement one verified workflow",
+  "updated_utc": "2000-01-01T00:00:00Z",
+  "next_command": "COMMAND",
+  "evidence": [],
+  "blockers": []
+}
