@@ -1,5 +1,8 @@
-#!/usr/bin/env sh
-set -eu
-ROOT=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
-cd "$ROOT"
-exec python3 -m unittest discover -s tests -v "$@"
+#!/usr/bin/env bash
+set -Eeuo pipefail
+ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+PY="$ROOT/.venv/bin/python"
+if [[ ! -f "$ROOT/.venv/.repo-gui-ready" ]] || [[ ! -x "$PY" ]] || ! "$PY" -c 'import PySide6' >/dev/null 2>&1; then
+    "$ROOT/install.sh"
+fi
+exec env PROJECT_TITLE="AIDevSpecs" "$PY" "$ROOT/project_gui.py" "$@"
